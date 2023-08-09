@@ -78,14 +78,14 @@ module.exports = function toReadable (number) {
           break;
           }
       }
-    } else if (arrayOfInitialNumber[1] > 1){
+    } else if (arrayOfInitialNumber[1] > 1){ // проверка дял чисел-сотен с десятком больше 1
       for (let i = 2; i < arrayOfNumbers.length; i++){
         if (arrayOfNumbers[i] == arrayOfInitialNumber[1]){
             stringFinished =  stringFinished + space + arrayOfDecimal[i];
            break;
         }
      }
-     for (let j = 1; j < arrayOfNumbers.length; j++){
+     for (let j = 1; j < arrayOfNumbers.length; j++){ // проверка последнего символа в цифрах-сотнях
       if (arrayOfNumbers[j] == arrayOfInitialNumber[2]){
           stringFinished = stringFinished + space + arrayOfStrings[j];
           break;
