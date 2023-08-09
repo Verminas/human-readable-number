@@ -8,7 +8,7 @@ module.exports = function toReadable (number) {
         if (arrayOfNumbers[i] == number){
             stringFinished = arrayOfStrings[i];
             break;
-        } else return 'number no from 0 to 9'; // пока не прописываю код для цифр больше 9
+        }
     }
   } else return 'length no 1'; // пока не прописываю код для десятков и сотен
   return stringFinished;
