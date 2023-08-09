@@ -2,9 +2,11 @@ module.exports = function toReadable (number) {
   let arrayOfNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   let arrayOfStrings = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
   let arrayOfStringsException = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+  let arrayOfDecimal = ['0', '0', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
   let arrayOfInitialNumber = Array.from(String(number));
   let length = String(number).length;
   //let teen = 'teen';
+  let space = ' ';
   let stringFinished = '';
   if (length == 1){ // проверка числа намбер на соответствие промежутку 0-9
     for (let i = 0; i < arrayOfNumbers.length; i++){
@@ -14,7 +16,7 @@ module.exports = function toReadable (number) {
         }
     }
   } else if (length == 2){ // начинается проверка на двузначные числа
-    if (number >= 10 && number <= 20){ // начинаю с проверки на строки-исключения для прежутка 10-20
+    if (number >= 10 && number < 20){ // начинаю с проверки на строки-исключения для промежутка 10-20
       switch(number){
         case 10: stringFinished = arrayOfStringsException[0];
           break;
@@ -38,7 +40,21 @@ module.exports = function toReadable (number) {
           break;
         // по идее закончила с промежутком 0-19
       }
-  } 
-}
+  }
+    else if (number >= 20 ) {
+      for (let i = 2; i < arrayOfNumbers.length; i++){
+        if (arrayOfNumbers[i] == arrayOfInitialNumber[0]){
+            stringFinished = arrayOfDecimal[i];
+           break;
+        }
+     }
+     for (let j = 1; j < arrayOfNumbers.length; j++){
+      if (arrayOfNumbers[j] == arrayOfInitialNumber[1]){
+          stringFinished = stringFinished + space + arrayOfStrings[j];
+          break;
+      }
+   }
+    }
+} // по идее закончила с промежутком 0-99
 return stringFinished;
 }
