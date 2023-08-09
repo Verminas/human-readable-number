@@ -5,7 +5,7 @@ module.exports = function toReadable (number) {
   let arrayOfDecimal = ['0', '0', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
   let arrayOfInitialNumber = Array.from(String(number));
   let length = String(number).length;
-  //let teen = 'teen';
+  let hundred = 'hundred';
   let space = ' ';
   let stringFinished = '';
   if (length == 1){ // проверка числа намбер на соответствие промежутку 0-9
@@ -54,7 +54,45 @@ module.exports = function toReadable (number) {
           break;
       }
    }
+    } // по идее закончила с промежутком 0-99
+ } else if (length == 3){ // начинается проверка на трехзначные числа
+    for (let i = 1; i < arrayOfNumbers.length; i++){
+          if (arrayOfNumbers[i] == arrayOfInitialNumber[0]){
+              stringFinished = arrayOfStrings[i] + space + hundred;
+            break;
+            }
+        }
+    if (arrayOfInitialNumber[1] == 0){ // проверка для чисел-сотен с нулевым десятком
+      for (let i = 1; i < arrayOfNumbers.length; i++){
+        if (arrayOfNumbers[i] == arrayOfInitialNumber[2]){
+            stringFinished = stringFinished + space + arrayOfStrings[i];
+          break;
+          }
+      }
     }
-} // по идее закончила с промежутком 0-99
+    if (arrayOfInitialNumber[1] == 1){ // проверка для чисел-сотен с единичным десятком
+      if (arrayOfInitialNumber[2] == 0) stringFinished = stringFinished + space + arrayOfStringsException[0]; // для всех сотен, оканчивающихся на 10
+      for (let i = 1; i < arrayOfNumbers.length; i++){
+        if (arrayOfNumbers[i] == arrayOfInitialNumber[2]){
+            stringFinished = stringFinished + space + arrayOfStringsException[i];
+          break;
+          }
+      }
+    } else if (arrayOfInitialNumber[1] > 1){
+      for (let i = 2; i < arrayOfNumbers.length; i++){
+        if (arrayOfNumbers[i] == arrayOfInitialNumber[1]){
+            stringFinished =  stringFinished + space + arrayOfDecimal[i];
+           break;
+        }
+     }
+     for (let j = 1; j < arrayOfNumbers.length; j++){
+      if (arrayOfNumbers[j] == arrayOfInitialNumber[2]){
+          stringFinished = stringFinished + space + arrayOfStrings[j];
+          break;
+      }
+   }
+    }
+    
+ }
 return stringFinished;
 }
